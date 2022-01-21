@@ -5,9 +5,10 @@ export const Calculator = (): ReactElement => {
   const someNumber: number = 1;
   const someString: string = 'hi';
   const [answer, setAnswer] = useState<number>(0);
+
   return (
     <div className="container">
-      <div className="calculations">value</div>
+      <div className="calculations">number</div>
         <div className="allClear numbersAndOperators brown">AC</div>
         <div className="positiveOrNegative numbersAndOperators brown">+/-</div>
         <div className="percent numbersAndOperators brown">%</div>
