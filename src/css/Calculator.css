@@ -1,0 +1,41 @@
+.container {
+  border-radius: 15px;
+  background-color: #612c2e;
+  width: 230px;
+  height: 320px;
+  margin: 80px auto 0;
+  position: relative;
+  padding: 0px;
+  color: white;
+  font-weight: bold;
+}
+
+.calculations {
+  width: 228px;
+  height: 58px;
+  margin: 1px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.numbersAndOperators {
+  width: 55.25px;
+  height: 50px;
+  display: inline-block;
+  background-color: #89635e;
+  margin: 1px;
+}
+.zero {
+  width: 112.5px;
+  border-bottom-left-radius: 15px;
+}
+.orange {
+  background-color: #ff9f09;
+}
+.equal {
+  border-bottom-right-radius: 15px;
+}
+
+.brown {
+  background-color: #704340;
+}
