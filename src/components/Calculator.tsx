@@ -6,10 +6,11 @@ export const Calculator = (): ReactElement => {
   let someString: string = 'hi';
   const [display, setDisplay] = useState<string>("");
   const [savedNumbers, setSavedNumbers] = useState([]);
+  //state for clearing display when number is click
   const [shouldClearDisplay, setShouldClearDisplay] = useState<boolean>(false);
 
   
-
+//onclicks for numbers
   const insertOne = () => {
     const newDisplay1 = shouldClearDisplay ? "1" : display + "1";
     setDisplay(newDisplay1);
@@ -67,13 +68,12 @@ const clearDisplay = () => {
   setSavedNumbers([]);
 }
 
-const insertAdd = () => {
-  setSavedNumbers([...savedNumbers, parseFloat(display), "+"]);
-  setDisplay("");
-}
+//onclick for operators
 
 useEffect(() => {
   const operator = savedNumbers[savedNumbers.length - 1];
+
+
   if (savedNumbers.length > 2 && operator === '-'){
     const newValue = computeTwoNumbers();
     setSavedNumbers([newValue, "-"]);
@@ -81,17 +81,56 @@ useEffect(() => {
     // Set a flag to clear the value when the next number is input
     setShouldClearDisplay(true);
   }
+
+  if (savedNumbers.length > 2 && operator === '+'){
+    const newValue = computeTwoNumbers();
+    setSavedNumbers([newValue, "+"]);
+    setDisplay(newValue);
+    setShouldClearDisplay(true);
+  }
+
+  if(savedNumbers.length > 2 && operator === '*'){
+    const newValue = computeTwoNumbers();
+    setSavedNumbers([newValue, "*"]);
+    setDisplay(newValue);
+    setShouldClearDisplay(true);
+  }
+
+  if (savedNumbers.length > 2 && operator === '/'){
+    const newValue =computeTwoNumbers();
+    setSavedNumbers([newValue, "/"]);
+    setDisplay(newValue);
+    setShouldClearDisplay(true);
+  }
+  
 }, [savedNumbers]);
 
 const insertSubtract = () => {
-  // Second operator -> run compute (length of array === 4)
   setSavedNumbers([...savedNumbers, parseFloat(display), "-"]);
   setDisplay("");
 }
-// [2, -, 1, -]
-// 1, -
 
-//[1, "+", 3]
+const insertAdd = () => {
+  setSavedNumbers([...savedNumbers, parseFloat(display), "+"]);
+  setDisplay("");
+}
+
+const insertMultiply = () => {
+  setSavedNumbers([...savedNumbers, parseFloat(display), "*"]);
+  setDisplay("");
+}
+
+const insertDivide = () => {
+  setSavedNumbers([...savedNumbers, parseFloat(display), "/"])
+  setDisplay("");
+}
+
+const insertPercent = () => {
+  
+}
+
+
+
 const computeTwoNumbers = () => {
   if (savedNumbers[1]=== "+"){
     return savedNumbers[0] + savedNumbers[2];
@@ -109,17 +148,36 @@ const computeTwoNumbers = () => {
 
 console.log(savedNumbers);
 
+//onClick for CSS for operator button
+const changeOperatorColor = () => {
+  const operator = savedNumbers[savedNumbers.length - 1];
+  if (operator === "+"){
+    return "dark_margin";
+  }
+  else if (operator === "-"){
+    return "dark_margin";
+  }
+  else if (operator === "*"){
+    return "dark_margin";
+  }
+  else if (operator === "/"){
+    return "dark_margin";
+  }
+  else {return ""}
+}
+
+
   return (
     <div className="container">
       <div className="calculations">{display}</div>
         <div className="allClear numbersAndOperators brown" onClick={clearDisplay}>AC</div>
         <div className="positiveOrNegative numbersAndOperators brown">+/-</div>
         <div className="percent numbersAndOperators brown">%</div>
-        <div className="division numbersAndOperators orange">&#247;</div>
+        <div className="division numbersAndOperators orange" onClick={insertDivide}>&#247;</div>
         <div className="seven numbersAndOperators" onClick={insertSeven}>7</div>
         <div className="eight numbersAndOperators" onClick={insertEight}>8</div>
         <div className="nine numbersAndOperators" onClick={insertNine}>9</div>
-        <div className="multiply numbersAndOperators orange">x</div>
+        <div className="multiply numbersAndOperators orange" onClick={insertMultiply}>x</div>
         <div className="four numbersAndOperators" onClick={insertFour}>4</div>
         <div className="five numbersAndOperators" onClick={insertFive}>5</div>
         <div className="six numbersAndOperators" onClick={insertSix}>6</div>
