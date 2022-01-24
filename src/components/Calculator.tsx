@@ -68,7 +68,7 @@ const clearDisplay = () => {
   setSavedNumbers([]);
 }
 
-//onclick for operators
+//useEffect to calculate the two numbers before proceeding
 
 useEffect(() => {
   const operator = savedNumbers[savedNumbers.length - 1];
@@ -103,11 +103,26 @@ useEffect(() => {
     setShouldClearDisplay(true);
   }
   
+  if (savedNumbers.length > 2 && operator === '='){
+    const newValue = computeTwoNumbers();
+    setSavedNumbers([newValue]);
+    setDisplay(newValue);
+    setShouldClearDisplay(true);
+  }
+
 }, [savedNumbers]);
 
+// onClick for operators
+
 const insertSubtract = () => {
-  setSavedNumbers([...savedNumbers, parseFloat(display), "-"]);
+  if (savedNumbers.length % 2 === 0){
+    setSavedNumbers([...savedNumbers, parseFloat(display), "-"]);
   setDisplay("");
+  }
+  else {
+    setSavedNumbers([...savedNumbers, "-"])
+    setDisplay("")
+  }
 }
 
 const insertAdd = () => {
@@ -125,10 +140,10 @@ const insertDivide = () => {
   setDisplay("");
 }
 
-const insertPercent = () => {
-  
+const insertEqual = () => {
+  setSavedNumbers([...savedNumbers,parseFloat(display), "="])
+  setDisplay("")
 }
-
 
 
 const computeTwoNumbers = () => {
@@ -188,7 +203,7 @@ const changeOperatorColor = () => {
         <div className="plus numbersAndOperators orange" onClick={insertAdd}>+</div>
         <div className="zero numbersAndOperators" onClick={insertZero}>0</div>
         <div className="decimal numbersAndOperators">.</div>
-        <div className="equal numbersAndOperators orange">=</div>
+        <div className="equal numbersAndOperators orange" onClick={insertEqual}>=</div>
     </div>
   );
 };
