@@ -8,49 +8,59 @@ export const Calculator = (): ReactElement => {
   const [savedNumbers, setSavedNumbers] = useState([]);
   const [shouldClearDisplay, setShouldClearDisplay] = useState<boolean>(false);
 
-  useEffect(() => {
-    const operator = savedNumbers[savedNumbers.length - 1];
-    if (savedNumbers.length > 2 && operator === '-'){
-      const newValue = computeTwoNumbers();
-      setSavedNumbers([newValue, "-"]);
-      setDisplay(newValue);
-      // Set a flag to clear the value when the next number is input
-      setShouldClearDisplay(true);
-    }
-  }, [savedNumbers]);
+  
 
   const insertOne = () => {
-    setDisplay(display + "1")
+    const newDisplay1 = shouldClearDisplay ? "1" : display + "1";
+    setDisplay(newDisplay1);
+    setShouldClearDisplay(false);
   }
   const insertTwo = () => {
     // Check if the flag to clear the display is true, if so, clear the display first.
-    const newDisplay = shouldClearDisplay ? "2" : display + "2";
-    setDisplay(newDisplay);
+    const newDisplay2 = shouldClearDisplay ? "2" : display + "2";
+    setDisplay(newDisplay2);
     setShouldClearDisplay(false);
   }
   const insertThree = () => {
-    setDisplay(display + "3")
+    const newDisplay3 = shouldClearDisplay ? "3" : display + "3";
+    setDisplay(newDisplay3);
+    setShouldClearDisplay(false);
   }
   const insertFour = () => {
-    setDisplay(display + "4")
+    const newDisplay4 = shouldClearDisplay ? "4" : display + "4";
+    setDisplay(newDisplay4);
+    setShouldClearDisplay(false);
   }
   const insertFive = () => {
-    setDisplay(display + "5")
+    const newDisplay5 = shouldClearDisplay ? "5" : display + "5";
+    setDisplay(newDisplay5);
+    setShouldClearDisplay(false);
   }
   const insertSix = () => {
-    setDisplay(display + "6")
+    const newDisplay6 = shouldClearDisplay ? "6" : display + "6";
+    setDisplay(newDisplay6);
+    setShouldClearDisplay(false);
   }
   const insertSeven = () => {
-    setDisplay(display + "7")
+    const newDisplay7 = shouldClearDisplay ? "7" : display + "7";
+    setDisplay(newDisplay7);
+    setShouldClearDisplay(false);
   }
   const insertEight = () => {
-    setDisplay(display + "8")
+    const newDisplay8 = shouldClearDisplay ? "8" : display + "8";
+    setDisplay(newDisplay8);
+    setShouldClearDisplay(false);
   }
   const insertNine = () => {
-    setDisplay(display + "9")
+    const newDisplay9 = shouldClearDisplay ? "9": display + "9";
+    setDisplay(newDisplay9)
+    setShouldClearDisplay(false);
   }
+
   const insertZero = () => {
-    setDisplay(display + "0")
+    const newDisplay0 = shouldClearDisplay ? "0" : display + "0";
+    setDisplay(newDisplay0);
+    setShouldClearDisplay(false)
   }
 const clearDisplay = () => {
   setDisplay("");
@@ -62,11 +72,24 @@ const insertAdd = () => {
   setDisplay("");
 }
 
+useEffect(() => {
+  const operator = savedNumbers[savedNumbers.length - 1];
+  if (savedNumbers.length > 2 && operator === '-'){
+    const newValue = computeTwoNumbers();
+    setSavedNumbers([newValue, "-"]);
+    setDisplay(newValue);
+    // Set a flag to clear the value when the next number is input
+    setShouldClearDisplay(true);
+  }
+}, [savedNumbers]);
+
 const insertSubtract = () => {
   // Second operator -> run compute (length of array === 4)
   setSavedNumbers([...savedNumbers, parseFloat(display), "-"]);
   setDisplay("");
 }
+// [2, -, 1, -]
+// 1, -
 
 //[1, "+", 3]
 const computeTwoNumbers = () => {
