@@ -120,24 +120,42 @@ const insertSubtract = () => {
   setDisplay("");
   }
   else {
-    setSavedNumbers([...savedNumbers, "-"])
-    setDisplay("")
+    setSavedNumbers([...savedNumbers, "-"]);
+    setDisplay("");
   }
 }
 
 const insertAdd = () => {
-  setSavedNumbers([...savedNumbers, parseFloat(display), "+"]);
-  setDisplay("");
+  if (savedNumbers.length % 2 === 0) {
+    setSavedNumbers([...savedNumbers, parseFloat(display), "+"]);
+    setDisplay("");
+  }
+  else {
+    setSavedNumbers([...savedNumbers, "+"]);
+    setDisplay("");
+  }
 }
 
 const insertMultiply = () => {
-  setSavedNumbers([...savedNumbers, parseFloat(display), "*"]);
-  setDisplay("");
+  if (savedNumbers.length % 2 === 0){
+    setSavedNumbers([...savedNumbers, parseFloat(display), "*"]);
+    setDisplay("");
+  }
+  else{
+    setSavedNumbers([...savedNumbers, "*"]);
+    setDisplay("");
+  }
 }
 
 const insertDivide = () => {
-  setSavedNumbers([...savedNumbers, parseFloat(display), "/"])
+  if (savedNumbers.length % 2 === 0){
+    setSavedNumbers([...savedNumbers, parseFloat(display), "/"])
   setDisplay("");
+  }
+  else {
+    setSavedNumbers([...savedNumbers, "/"])
+    setDisplay("");
+  }
 }
 
 const insertEqual = () => {
@@ -164,21 +182,34 @@ const computeTwoNumbers = () => {
 console.log(savedNumbers);
 
 //onClick for CSS for operator button
-const changeOperatorColor = () => {
+const changeAddColor = () => {
   const operator = savedNumbers[savedNumbers.length - 1];
   if (operator === "+"){
-    return "dark_margin";
+    return "darkBorder";
   }
-  else if (operator === "-"){
-    return "dark_margin";
+  else {return }
+}
+
+const changeSubtractColor = () => {
+  const operator = savedNumbers[savedNumbers.length - 1];
+  if (operator === "-"){
+    return "darkBorder";
   }
-  else if (operator === "*"){
-    return "dark_margin";
+  else {return }
+}
+const changeDivideColor = () => {
+  const operator = savedNumbers[savedNumbers.length - 1];
+  if (operator === "/"){
+    return "darkBorder";
   }
-  else if (operator === "/"){
-    return "dark_margin";
+  else {return }
+}
+const changeMultiplyColor = () => {
+  const operator = savedNumbers[savedNumbers.length - 1];
+  if (operator === "*"){
+    return "darkBorder";
   }
-  else {return ""}
+  else {return }
 }
 
 
@@ -188,19 +219,19 @@ const changeOperatorColor = () => {
         <div className="allClear numbersAndOperators brown" onClick={clearDisplay}>AC</div>
         <div className="positiveOrNegative numbersAndOperators brown">+/-</div>
         <div className="percent numbersAndOperators brown">%</div>
-        <div className="division numbersAndOperators orange" onClick={insertDivide}>&#247;</div>
+        <div className={`division numbersAndOperators orange ${changeDivideColor()}`} onClick={insertDivide}>&#247;</div>
         <div className="seven numbersAndOperators" onClick={insertSeven}>7</div>
         <div className="eight numbersAndOperators" onClick={insertEight}>8</div>
         <div className="nine numbersAndOperators" onClick={insertNine}>9</div>
-        <div className="multiply numbersAndOperators orange" onClick={insertMultiply}>x</div>
+        <div className={`multiply numbersAndOperators orange ${changeMultiplyColor()}`} onClick={insertMultiply}>x</div>
         <div className="four numbersAndOperators" onClick={insertFour}>4</div>
         <div className="five numbersAndOperators" onClick={insertFive}>5</div>
         <div className="six numbersAndOperators" onClick={insertSix}>6</div>
-        <div className="minus numbersAndOperators orange" onClick={insertSubtract}>-</div>
+        <div className={`minus numbersAndOperators orange ${changeSubtractColor()}`} onClick={insertSubtract}>-</div>
         <div className="one numbersAndOperators" onClick={insertOne}>1</div>
         <div className="two numbersAndOperators" onClick={insertTwo}>2</div>
         <div className="three numbersAndOperators" onClick={insertThree}>3</div>
-        <div className="plus numbersAndOperators orange" onClick={insertAdd}>+</div>
+        <div className={`plus numbersAndOperators orange ${changeAddColor()}`} onClick={insertAdd}>+</div>
         <div className="zero numbersAndOperators" onClick={insertZero}>0</div>
         <div className="decimal numbersAndOperators">.</div>
         <div className="equal numbersAndOperators orange" onClick={insertEqual}>=</div>

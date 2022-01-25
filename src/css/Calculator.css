@@ -42,3 +42,13 @@
 .brown {
   background-color: #704340;
 }
+
+.darkBorder {
+  border-color: #5b4740;
+  border-style: solid;
+  margin: 0;
+  width: 52.25px;
+  height: 46px;
+  border-width: 2px;
+  vertical-align: text-top;
+}
