@@ -75,6 +75,16 @@ export const Calculator = (): ReactElement => {
     setSavedNumbers([]);
   }
 
+  const insertPositiveOrNegative = () => {  
+    if (display[0] === "-"){
+      setDisplay(display.substring(1))
+    }
+    else {
+      setDisplay("-" + display)
+    }
+  }
+
+
 //useEffect to calculate the two numbers before proceeding
 
 useEffect(() => {
@@ -189,7 +199,7 @@ const insertPercent = () => {
   setDisplay("");
 }
 
-
+// function to calculate two numbers
 const computeTwoNumbers = () => {
   if (savedNumbers[1]=== "+"){
     return savedNumbers[0] + savedNumbers[2];
@@ -243,7 +253,7 @@ const changeMultiplyColor = () => {
     <div className="container">
       <div className="calculations">{display}</div>
         <div className="allClear numbersAndOperators brown" onClick={clearDisplay}>AC</div>
-        <div className="positiveOrNegative numbersAndOperators brown">+/-</div>
+        <div className="positiveOrNegative numbersAndOperators brown" onClick={insertPositiveOrNegative}>+/-</div>
         <div className="percent numbersAndOperators brown" onClick={insertPercent}>%</div>
         <div className={`division numbersAndOperators orange ${changeDivideColor()}`} onClick={insertDivide}>&#247;</div>
         <div className="seven numbersAndOperators" onClick={insertSeven}>7</div>
