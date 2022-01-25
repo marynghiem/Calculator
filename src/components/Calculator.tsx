@@ -61,12 +61,19 @@ export const Calculator = (): ReactElement => {
   const insertZero = () => {
     const newDisplay0 = shouldClearDisplay ? "0" : display + "0";
     setDisplay(newDisplay0);
-    setShouldClearDisplay(false)
+    setShouldClearDisplay(false);
   }
-const clearDisplay = () => {
-  setDisplay("");
-  setSavedNumbers([]);
-}
+  
+  const insertDecimal = () => {
+    const newDisplayDecimal = shouldClearDisplay ? "0" : display + ".";
+    setDisplay(newDisplayDecimal);
+    setShouldClearDisplay(false);
+  }
+
+  const clearDisplay = () => {
+    setDisplay("");
+    setSavedNumbers([]);
+  }
 
 //useEffect to calculate the two numbers before proceeding
 
@@ -107,6 +114,20 @@ useEffect(() => {
     const newValue = computeTwoNumbers();
     setSavedNumbers([newValue]);
     setDisplay(newValue);
+    setShouldClearDisplay(true);
+  }
+
+  if (savedNumbers.length > 2 && operator === '%'){
+    const newValue = computeTwoNumbers();
+    setSavedNumbers([newValue/100]);
+    setDisplay(`${newValue/100}`);
+    setShouldClearDisplay(true);
+  }
+
+  if (savedNumbers.length === 2 && operator === '%'){
+    const newValue = savedNumbers[0]/100;
+    setSavedNumbers([newValue])
+    setDisplay(`${newValue}`);
     setShouldClearDisplay(true);
   }
 
@@ -161,6 +182,11 @@ const insertDivide = () => {
 const insertEqual = () => {
   setSavedNumbers([...savedNumbers,parseFloat(display), "="])
   setDisplay("")
+}
+
+const insertPercent = () => {
+  setSavedNumbers([...savedNumbers, parseFloat(display), "%"])
+  setDisplay("");
 }
 
 
@@ -218,7 +244,7 @@ const changeMultiplyColor = () => {
       <div className="calculations">{display}</div>
         <div className="allClear numbersAndOperators brown" onClick={clearDisplay}>AC</div>
         <div className="positiveOrNegative numbersAndOperators brown">+/-</div>
-        <div className="percent numbersAndOperators brown">%</div>
+        <div className="percent numbersAndOperators brown" onClick={insertPercent}>%</div>
         <div className={`division numbersAndOperators orange ${changeDivideColor()}`} onClick={insertDivide}>&#247;</div>
         <div className="seven numbersAndOperators" onClick={insertSeven}>7</div>
         <div className="eight numbersAndOperators" onClick={insertEight}>8</div>
@@ -233,7 +259,7 @@ const changeMultiplyColor = () => {
         <div className="three numbersAndOperators" onClick={insertThree}>3</div>
         <div className={`plus numbersAndOperators orange ${changeAddColor()}`} onClick={insertAdd}>+</div>
         <div className="zero numbersAndOperators" onClick={insertZero}>0</div>
-        <div className="decimal numbersAndOperators">.</div>
+        <div className="decimal numbersAndOperators" onClick={insertDecimal}>.</div>
         <div className="equal numbersAndOperators orange" onClick={insertEqual}>=</div>
     </div>
   );

@@ -2,7 +2,7 @@
   border-radius: 15px;
   background-color: #612c2e;
   width: 230px;
-  height: 320px;
+  height: 324px;
   margin: 80px auto 0;
   position: relative;
   padding: 0px;
@@ -12,7 +12,7 @@
 
 .calculations {
   width: 228px;
-  height: 58px;
+  height: 77px;
   margin: 1px;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
@@ -23,7 +23,7 @@
 
 .numbersAndOperators {
   width: 55.25px;
-  height: 50px;
+  height: 47px;
   display: inline-block;
   background-color: #89635e;
   margin: 1px;
@@ -47,8 +47,8 @@
   border-color: #5b4740;
   border-style: solid;
   margin: 0;
-  width: 52.25px;
-  height: 46px;
+  width: 53.25px;
+  height: 45px;
   border-width: 2px;
-  vertical-align: text-top;
+  vertical-align: top;
 }
