@@ -149,59 +149,56 @@ useEffect(() => {
 const insertSubtract = () => {
   if (savedNumbers.length % 2 === 0){
     setSavedNumbers([...savedNumbers, parseFloat(display), "-"]);
-  setDisplay("");
+    setShouldClearDisplay(true);
   }
   else {
     setSavedNumbers([...savedNumbers, "-"]);
-    setDisplay("");
+    setShouldClearDisplay(true);
   }
 }
 
 const insertAdd = () => {
   if (savedNumbers.length % 2 === 0) {
     setSavedNumbers([...savedNumbers, parseFloat(display), "+"]);
-    setDisplay("");
+    setShouldClearDisplay(true);
   }
   else {
     setSavedNumbers([...savedNumbers, "+"]);
-    setDisplay("");
+    setShouldClearDisplay(true);
   }
 }
 
 const insertMultiply = () => {
   if (savedNumbers.length % 2 === 0){
     setSavedNumbers([...savedNumbers, parseFloat(display), "*"]);
-    setDisplay("");
+    setShouldClearDisplay(true);
   }
   else{
     setSavedNumbers([...savedNumbers, "*"]);
-    setDisplay("");
+    setShouldClearDisplay(true);
   }
 }
 
 const insertDivide = () => {
   if (savedNumbers.length % 2 === 0){
     setSavedNumbers([...savedNumbers, parseFloat(display), "/"])
-  setDisplay("");
+    setShouldClearDisplay(true);
   }
   else {
     setSavedNumbers([...savedNumbers, "/"])
-    setDisplay("");
+    setShouldClearDisplay(true);
   }
 }
 
 const insertEqual = () => {
   setSavedNumbers([...savedNumbers,parseFloat(display), "="])
-  setDisplay("")
 }
 
 const insertPercent = () => {
   if (savedNumbers.length % 2 === 0){
-    setSavedNumbers([...savedNumbers, parseFloat(display), "%"])
-  setDisplay("");}
+    setSavedNumbers([...savedNumbers, parseFloat(display), "%"])} //dont think i need this set display
   else {
-    setSavedNumbers([savedNumbers[0]/100])
-    setDisplay(`${savedNumbers[0]/100}`);
+    setSavedNumbers([savedNumbers[0], "%"]);
   }
 
 }
@@ -259,25 +256,25 @@ const changeMultiplyColor = () => {
   return (
     <div className="container">
       <div className="calculations">{display}</div>
-        <div className="allClear numbersAndOperators brown" onClick={clearDisplay}>AC</div>
-        <div className="positiveOrNegative numbersAndOperators brown" onClick={insertPositiveOrNegative}>+/-</div>
-        <div className="percent numbersAndOperators brown" onClick={insertPercent}>%</div>
-        <div className={`division numbersAndOperators orange ${changeDivideColor()}`} onClick={insertDivide}>&#247;</div>
-        <div className="seven numbersAndOperators" onClick={insertSeven}>7</div>
-        <div className="eight numbersAndOperators" onClick={insertEight}>8</div>
-        <div className="nine numbersAndOperators" onClick={insertNine}>9</div>
-        <div className={`multiply numbersAndOperators orange ${changeMultiplyColor()}`} onClick={insertMultiply}>x</div>
-        <div className="four numbersAndOperators" onClick={insertFour}>4</div>
-        <div className="five numbersAndOperators" onClick={insertFive}>5</div>
-        <div className="six numbersAndOperators" onClick={insertSix}>6</div>
-        <div className={`minus numbersAndOperators orange ${changeSubtractColor()}`} onClick={insertSubtract}>-</div>
-        <div className="one numbersAndOperators" onClick={insertOne}>1</div>
-        <div className="two numbersAndOperators" onClick={insertTwo}>2</div>
-        <div className="three numbersAndOperators" onClick={insertThree}>3</div>
-        <div className={`plus numbersAndOperators orange ${changeAddColor()}`} onClick={insertAdd}>+</div>
-        <div className="zero numbersAndOperators" onClick={insertZero}>0</div>
-        <div className="decimal numbersAndOperators" onClick={insertDecimal}>.</div>
-        <div className="equal numbersAndOperators orange" onClick={insertEqual}>=</div>
+        <div className="allClear numbersAndOperators brown" onClick={clearDisplay}><p>AC</p></div>
+        <div className="positiveOrNegative numbersAndOperators brown" onClick={insertPositiveOrNegative}><p>+/-</p></div>
+        <div className="percent numbersAndOperators brown" onClick={insertPercent}><p>%</p></div>
+        <div className={`division numbersAndOperators orange ${changeDivideColor()}`} onClick={insertDivide}><p>&#247;</p></div>
+        <div className="seven numbersAndOperators" onClick={insertSeven}><p>7</p></div>
+        <div className="eight numbersAndOperators" onClick={insertEight}><p>8</p></div>
+        <div className="nine numbersAndOperators" onClick={insertNine}><p>9</p></div>
+        <div className={`multiply numbersAndOperators orange ${changeMultiplyColor()}`} onClick={insertMultiply}><p>&#215;</p></div>
+        <div className="four numbersAndOperators" onClick={insertFour}><p>4</p></div>
+        <div className="five numbersAndOperators" onClick={insertFive}><p>5</p></div>
+        <div className="six numbersAndOperators" onClick={insertSix}><p>6</p></div>
+        <div className={`minus numbersAndOperators orange ${changeSubtractColor()}`} onClick={insertSubtract}><p>-</p></div>
+        <div className="one numbersAndOperators" onClick={insertOne}><p>1</p></div>
+        <div className="two numbersAndOperators" onClick={insertTwo}><p>2</p></div>
+        <div className="three numbersAndOperators" onClick={insertThree}><p>3</p></div>
+        <div className={`plus numbersAndOperators orange ${changeAddColor()}`} onClick={insertAdd}><p>+</p></div>
+        <div className="zero numbersAndOperators" onClick={insertZero}><p>0</p></div>
+        <div className="decimal numbersAndOperators" onClick={insertDecimal}><p>.</p></div>
+        <div className="equal numbersAndOperators orange" onClick={insertEqual}><p>=</p></div>
     </div>
   );
 };
