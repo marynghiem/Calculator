@@ -4,7 +4,7 @@ import "../css/Calculator.css";
 export const Calculator = (): ReactElement => {
   const someNumber: number = 1;
   let someString: string = 'hi';
-  const [display, setDisplay] = useState<string>("");
+  const [display, setDisplay] = useState<string>("0");
   const [savedNumbers, setSavedNumbers] = useState([]);
   //state for clearing display when number is click
   const [shouldClearDisplay, setShouldClearDisplay] = useState<boolean>(false);
@@ -71,16 +71,24 @@ export const Calculator = (): ReactElement => {
   }
 
   const clearDisplay = () => {
-    setDisplay("");
+    setDisplay("0");
     setSavedNumbers([]);
   }
 
-  const insertPositiveOrNegative = () => {  
-    if (display[0] === "-"){
-      setDisplay(display.substring(1))
+  const insertPositiveOrNegative = () => {
+    let displayString = display.toString();   
+    if (displayString[0] === "-"){
+      setDisplay(displayString.substring(1))
+      //fix this
+      if (savedNumbers.length === 1){
+        setSavedNumbers([parseFloat(displayString.substring(1))])
+      }
     }
     else {
-      setDisplay("-" + display)
+      setDisplay("-" + displayString) //fixed the issue that there was a "-"-4
+      if (savedNumbers.length === 1){
+        setSavedNumbers([parseFloat("-" + displayString)])
+      }
     }
   }
 
