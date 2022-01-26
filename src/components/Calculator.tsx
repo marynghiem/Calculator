@@ -141,6 +141,7 @@ useEffect(() => {
     setShouldClearDisplay(true);
   }
 
+
 }, [savedNumbers]);
 
 // onClick for operators
@@ -195,8 +196,14 @@ const insertEqual = () => {
 }
 
 const insertPercent = () => {
-  setSavedNumbers([...savedNumbers, parseFloat(display), "%"])
-  setDisplay("");
+  if (savedNumbers.length % 2 === 0){
+    setSavedNumbers([...savedNumbers, parseFloat(display), "%"])
+  setDisplay("");}
+  else {
+    setSavedNumbers([savedNumbers[0]/100])
+    setDisplay(`${savedNumbers[0]/100}`);
+  }
+
 }
 
 // function to calculate two numbers
