@@ -11,7 +11,11 @@ export const Calculator = (): ReactElement => {
 
   //onclicks for numbers
   const insertNumber = (numberToInsert: NumberAsString): void => {
-    const newDisplay: string = shouldClearDisplay ? numberToInsert : display + numberToInsert;
+    let newDisplay: string = shouldClearDisplay ? numberToInsert : display + numberToInsert;
+    if (newDisplay.indexOf(".") === -1 && newDisplay[0] === "0" && newDisplay.length !== 1) {
+      // trim excess leading zeroes
+      newDisplay = newDisplay.substring(1);
+    }
     setDisplay(newDisplay);
     setShouldClearDisplay(false);
   };
