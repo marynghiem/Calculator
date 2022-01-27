@@ -17,9 +17,13 @@ export const Calculator = (): ReactElement => {
   };
 
   const insertDecimal = (): void => {
-    const newDisplayDecimal: string = shouldClearDisplay ? "0" : display + ".";
-    setDisplay(newDisplayDecimal);
-    setShouldClearDisplay(false);
+    const displayString = display.toString();
+    const checkDisplay = displayString.indexOf(".");
+    if (checkDisplay === -1) {
+      const newDisplayDecimal: string = shouldClearDisplay ? "." : display + ".";
+      setDisplay(newDisplayDecimal);
+      setShouldClearDisplay(false);
+    }
   };
 
   const clearDisplay = (): void => {
@@ -99,43 +103,12 @@ export const Calculator = (): ReactElement => {
   }, [savedNumbers]);
 
   // onClick for operators
-
-  const insertSubtract = () => {
+  const insertOperator = (operator) => {
     if (savedNumbers.length % 2 === 0) {
-      setSavedNumbers([...savedNumbers, parseFloat(display), "-"]);
+      setSavedNumbers([...savedNumbers, parseFloat(display), operator]);
       setShouldClearDisplay(true);
     } else {
-      setSavedNumbers([...savedNumbers, "-"]);
-      setShouldClearDisplay(true);
-    }
-  };
-
-  const insertAdd = () => {
-    if (savedNumbers.length % 2 === 0) {
-      setSavedNumbers([...savedNumbers, parseFloat(display), "+"]);
-      setShouldClearDisplay(true);
-    } else {
-      setSavedNumbers([...savedNumbers, "+"]);
-      setShouldClearDisplay(true);
-    }
-  };
-
-  const insertMultiply = () => {
-    if (savedNumbers.length % 2 === 0) {
-      setSavedNumbers([...savedNumbers, parseFloat(display), "*"]);
-      setShouldClearDisplay(true);
-    } else {
-      setSavedNumbers([...savedNumbers, "*"]);
-      setShouldClearDisplay(true);
-    }
-  };
-
-  const insertDivide = () => {
-    if (savedNumbers.length % 2 === 0) {
-      setSavedNumbers([...savedNumbers, parseFloat(display), "/"]);
-      setShouldClearDisplay(true);
-    } else {
-      setSavedNumbers([...savedNumbers, "/"]);
+      setSavedNumbers([...savedNumbers, operator]);
       setShouldClearDisplay(true);
     }
   };
@@ -214,7 +187,7 @@ export const Calculator = (): ReactElement => {
       <div className="percent numbersAndOperators brown" onClick={insertPercent}>
         <p>%</p>
       </div>
-      <div className={`division numbersAndOperators orange ${changeDivideColor()}`} onClick={insertDivide}>
+      <div className={`division numbersAndOperators orange ${changeDivideColor()}`} onClick={() => insertOperator("/")}>
         <p>&#247;</p>
       </div>
       <div className="seven numbersAndOperators" onClick={() => insertNumber("7")}>
@@ -226,7 +199,10 @@ export const Calculator = (): ReactElement => {
       <div className="nine numbersAndOperators" onClick={() => insertNumber("9")}>
         <p>9</p>
       </div>
-      <div className={`multiply numbersAndOperators orange ${changeMultiplyColor()}`} onClick={insertMultiply}>
+      <div
+        className={`multiply numbersAndOperators orange ${changeMultiplyColor()}`}
+        onClick={() => insertOperator("*")}
+      >
         <p>&#215;</p>
       </div>
       <div className="four numbersAndOperators" onClick={() => insertNumber("4")}>
@@ -238,7 +214,7 @@ export const Calculator = (): ReactElement => {
       <div className="six numbersAndOperators" onClick={() => insertNumber("6")}>
         <p>6</p>
       </div>
-      <div className={`minus numbersAndOperators orange ${changeSubtractColor()}`} onClick={insertSubtract}>
+      <div className={`minus numbersAndOperators orange ${changeSubtractColor()}`} onClick={() => insertOperator("-")}>
         <p>-</p>
       </div>
       <div className="one numbersAndOperators" onClick={() => insertNumber("1")}>
@@ -250,7 +226,7 @@ export const Calculator = (): ReactElement => {
       <div className="three numbersAndOperators" onClick={() => insertNumber("3")}>
         <p>3</p>
       </div>
-      <div className={`plus numbersAndOperators orange ${changeAddColor()}`} onClick={insertAdd}>
+      <div className={`plus numbersAndOperators orange ${changeAddColor()}`} onClick={() => insertOperator("+")}>
         <p>+</p>
       </div>
       <div className="zero numbersAndOperators" onClick={() => insertNumber("0")}>
