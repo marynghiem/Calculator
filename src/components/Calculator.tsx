@@ -65,32 +65,11 @@ export const Calculator = (): ReactElement => {
       setShouldClearDisplay(true);
     }
 
-    if (savedNumbers.length > 2 && operator === "-") {
+    if (savedNumbers.length > 2 && ["-", "+", "/", "*"].includes(operator)) {
       const newValue = computeTwoNumbers();
-      setSavedNumbers([newValue, "-"]);
+      setSavedNumbers([newValue, operator]);
       setDisplay(newValue);
       // Set a flag to clear the value when the next number is input
-      setShouldClearDisplay(true);
-    }
-
-    if (savedNumbers.length > 2 && operator === "+") {
-      const newValue = computeTwoNumbers();
-      setSavedNumbers([newValue, "+"]);
-      setDisplay(newValue);
-      setShouldClearDisplay(true);
-    }
-
-    if (savedNumbers.length > 2 && operator === "*") {
-      const newValue = computeTwoNumbers();
-      setSavedNumbers([newValue, "*"]);
-      setDisplay(newValue);
-      setShouldClearDisplay(true);
-    }
-
-    if (savedNumbers.length > 2 && operator === "/") {
-      const newValue = computeTwoNumbers();
-      setSavedNumbers([newValue, "/"]);
-      setDisplay(newValue);
       setShouldClearDisplay(true);
     }
 
