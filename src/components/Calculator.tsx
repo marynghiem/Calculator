@@ -8,6 +8,7 @@ export const Calculator = (): ReactElement => {
   const [savedNumbers, setSavedNumbers] = useState([]);
   //state for clearing display when number is click
   const [shouldClearDisplay, setShouldClearDisplay] = useState<boolean>(false);
+  const [prevOperation, setPrevOperation] = useState([]);
 
   //onclicks for numbers
   const insertNumber = (numberToInsert: NumberAsString): void => {
@@ -33,6 +34,7 @@ export const Calculator = (): ReactElement => {
   const clearDisplay = (): void => {
     setDisplay("0");
     setSavedNumbers([]);
+    setPrevOperation([]);
   };
 
   const insertPositiveOrNegative = (): void => {
@@ -54,6 +56,14 @@ export const Calculator = (): ReactElement => {
   //useEffect to calculate the two numbers before proceeding
   useEffect(() => {
     const operator: string = savedNumbers[savedNumbers.length - 1];
+    if (savedNumbers.length > 2) {
+      setPrevOperation([savedNumbers[savedNumbers.length - 3], savedNumbers[savedNumbers.length - 2]]);
+    }
+    if (savedNumbers.length === 2 && operator === "=") {
+      setSavedNumbers([savedNumbers[0]]);
+      setDisplay(`${savedNumbers[0]}`);
+      setShouldClearDisplay(true);
+    }
 
     if (savedNumbers.length > 2 && operator === "-") {
       const newValue = computeTwoNumbers();
@@ -118,7 +128,11 @@ export const Calculator = (): ReactElement => {
   };
 
   const insertEqual = () => {
-    setSavedNumbers([...savedNumbers, parseFloat(display), "="]);
+    if (savedNumbers.length % 2 === 0) {
+      setSavedNumbers([...savedNumbers, parseFloat(display), "="]);
+    } else {
+      setSavedNumbers([...savedNumbers, ...prevOperation, "="]);
+    }
   };
 
   const insertPercent = () => {
@@ -142,6 +156,7 @@ export const Calculator = (): ReactElement => {
     }
   };
 
+  console.log(prevOperation);
   console.log(savedNumbers);
 
   //onClick for CSS for operator button
