@@ -9,6 +9,7 @@ export const Calculator = (): ReactElement => {
   //state for clearing display when number is click
   const [shouldClearDisplay, setShouldClearDisplay] = useState<boolean>(false);
   const [prevOperation, setPrevOperation] = useState([]);
+  const [everythingClicked, setEverythingClicked] = useState([]);
 
   //onclicks for numbers
   const insertNumber = (numberToInsert: NumberAsString): void => {
@@ -19,6 +20,7 @@ export const Calculator = (): ReactElement => {
     }
     setDisplay(newDisplay);
     setShouldClearDisplay(false);
+    setEverythingClicked([...everythingClicked, "number"]);
   };
 
   const insertDecimal = (): void => {
@@ -97,13 +99,22 @@ export const Calculator = (): ReactElement => {
 
   // onClick for operators
   const insertOperator = (operator) => {
-    if (savedNumbers.length % 2 === 0) {
+    //change operator midway
+    if (everythingClicked[everythingClicked.length - 1] === "operator") {
+      let savedNumbersCopy = [...savedNumbers];
+      savedNumbersCopy.pop();
+      savedNumbersCopy.push(operator);
+      setSavedNumbers(savedNumbersCopy);
+      setShouldClearDisplay(true);
+    } //add operator if its even
+    else if (savedNumbers.length % 2 === 0) {
       setSavedNumbers([...savedNumbers, parseFloat(display), operator]);
       setShouldClearDisplay(true);
     } else {
       setSavedNumbers([...savedNumbers, operator]);
       setShouldClearDisplay(true);
     }
+    setEverythingClicked([...everythingClicked, "operator"]);
   };
 
   const insertEqual = () => {
