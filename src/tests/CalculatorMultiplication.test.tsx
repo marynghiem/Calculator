@@ -15,4 +15,13 @@ describe("Calculator multiply", () => {
     wrapped.find(".equal").simulate("click");
     expect(wrapped.find(".calculations").text()).toEqual("2");
   });
+  it("should multiply two double digit numbers", () => {
+    wrapped.find(".one").simulate("click");
+    wrapped.find(".zero").simulate("click");
+    wrapped.find(".multiply").simulate("click");
+    wrapped.find(".two").simulate("click");
+    wrapped.find(".five").simulate("click");
+    wrapped.find(".equal").simulate("click");
+    expect(wrapped.find(".calculations").text()).toEqual("250");
+  });
 });

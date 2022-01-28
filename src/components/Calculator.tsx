@@ -139,34 +139,9 @@ export const Calculator = (): ReactElement => {
   console.log(savedNumbers);
 
   //onClick for CSS for operator button
-  const changeAddColor = () => {
+  const changeOperatorColor = (comparisonOperator: string): string => {
     const operator = savedNumbers[savedNumbers.length - 1];
-    if (operator === "+") {
-      return "darkBorder";
-    } else {
-      return;
-    }
-  };
-
-  const changeSubtractColor = () => {
-    const operator = savedNumbers[savedNumbers.length - 1];
-    if (operator === "-") {
-      return "darkBorder";
-    } else {
-      return;
-    }
-  };
-  const changeDivideColor = () => {
-    const operator = savedNumbers[savedNumbers.length - 1];
-    if (operator === "/") {
-      return "darkBorder";
-    } else {
-      return;
-    }
-  };
-  const changeMultiplyColor = () => {
-    const operator = savedNumbers[savedNumbers.length - 1];
-    if (operator === "*") {
+    if (operator === comparisonOperator) {
       return "darkBorder";
     } else {
       return;
@@ -185,7 +160,10 @@ export const Calculator = (): ReactElement => {
       <div className="percent numbersAndOperators brown" onClick={insertPercent}>
         <p>%</p>
       </div>
-      <div className={`division numbersAndOperators orange ${changeDivideColor()}`} onClick={() => insertOperator("/")}>
+      <div
+        className={`division numbersAndOperators orange ${changeOperatorColor("/")}`}
+        onClick={() => insertOperator("/")}
+      >
         <p>&#247;</p>
       </div>
       <div className="seven numbersAndOperators" onClick={() => insertNumber("7")}>
@@ -198,7 +176,7 @@ export const Calculator = (): ReactElement => {
         <p>9</p>
       </div>
       <div
-        className={`multiply numbersAndOperators orange ${changeMultiplyColor()}`}
+        className={`multiply numbersAndOperators orange ${changeOperatorColor("*")}`}
         onClick={() => insertOperator("*")}
       >
         <p>&#215;</p>
@@ -212,7 +190,10 @@ export const Calculator = (): ReactElement => {
       <div className="six numbersAndOperators" onClick={() => insertNumber("6")}>
         <p>6</p>
       </div>
-      <div className={`minus numbersAndOperators orange ${changeSubtractColor()}`} onClick={() => insertOperator("-")}>
+      <div
+        className={`minus numbersAndOperators orange ${changeOperatorColor("-")}`}
+        onClick={() => insertOperator("-")}
+      >
         <p>-</p>
       </div>
       <div className="one numbersAndOperators" onClick={() => insertNumber("1")}>
@@ -224,7 +205,10 @@ export const Calculator = (): ReactElement => {
       <div className="three numbersAndOperators" onClick={() => insertNumber("3")}>
         <p>3</p>
       </div>
-      <div className={`plus numbersAndOperators orange ${changeAddColor()}`} onClick={() => insertOperator("+")}>
+      <div
+        className={`plus numbersAndOperators orange ${changeOperatorColor("+")}`}
+        onClick={() => insertOperator("+")}
+      >
         <p>+</p>
       </div>
       <div className="zero numbersAndOperators" onClick={() => insertNumber("0")}>

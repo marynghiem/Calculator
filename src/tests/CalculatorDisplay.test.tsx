@@ -16,4 +16,9 @@ describe("Calculator display", () => {
     wrapped.find(".one").simulate("click");
     expect(wrapped.find(".calculations").text()).toEqual("1");
   });
+  it("should clear the display when a AC is pressed", () => {
+    wrapped.find(".one").simulate("click");
+    wrapped.find(".allClear").simulate("click");
+    expect(wrapped.find(".calculations").text()).toEqual("0");
+  });
 });
