@@ -15,4 +15,11 @@ describe("Calculator percent", () => {
     wrapped.find(".percent").simulate("click");
     expect(wrapped.find(".calculations").text()).toEqual("0.11");
   });
+  it("should have a decimal become a hundredth times smaller when percent is clicked twice", () => {
+    wrapped.find(".one").simulate("click");
+    wrapped.find(".one").simulate("click");
+    wrapped.find(".percent").simulate("click");
+    wrapped.find(".percent").simulate("click");
+    expect(wrapped.find(".calculations").text()).toEqual("0.0011");
+  });
 });

@@ -21,4 +21,12 @@ describe("Calculator display", () => {
     wrapped.find(".allClear").simulate("click");
     expect(wrapped.find(".calculations").text()).toEqual("0");
   });
+  it("should allow the display to contain only one decimal", () => {
+    wrapped.find(".decimal").simulate("click");
+    wrapped.find(".decimal").simulate("click");
+    wrapped.find(".decimal").simulate("click");
+    wrapped.find(".decimal").simulate("click");
+    wrapped.find(".one").simulate("click");
+    expect(wrapped.find(".calculations").text()).toEqual("0.1");
+  });
 });

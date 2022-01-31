@@ -32,4 +32,14 @@ describe("Calculator division", () => {
     wrapped.find(".division").simulate("click");
     expect(wrapped.find(".calculations").text()).toEqual("1");
   });
+  it("should divide a triple digit number by a double digit numbers", () => {
+    wrapped.find(".one").simulate("click");
+    wrapped.find(".four").simulate("click");
+    wrapped.find(".four").simulate("click");
+    wrapped.find(".division").simulate("click");
+    wrapped.find(".one").simulate("click");
+    wrapped.find(".two").simulate("click");
+    wrapped.find(".equal").simulate("click");
+    expect(wrapped.find(".calculations").text()).toEqual("12");
+  });
 });
