@@ -26,4 +26,14 @@ describe("Calculator addition", () => {
     wrapped.find(".equal").simulate("click");
     expect(wrapped.find(".calculations").text()).toEqual("32");
   });
+
+  it("should display the same number if the user clicks the add sign multiple of times", () => {
+    wrapped.find(".one").simulate("click");
+    wrapped.find(".plus").simulate("click");
+    wrapped.find(".plus").simulate("click");
+    wrapped.find(".plus").simulate("click");
+    wrapped.find(".plus").simulate("click");
+    wrapped.find(".plus").simulate("click");
+    expect(wrapped.find(".calculations").text()).toEqual("1");
+  });
 });

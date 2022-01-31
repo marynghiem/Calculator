@@ -37,6 +37,7 @@ export const Calculator = (): ReactElement => {
     setDisplay("0");
     setSavedNumbers([]);
     setPrevOperation([]);
+    setEverythingClicked([]);
   };
 
   const insertPositiveOrNegative = (): void => {
