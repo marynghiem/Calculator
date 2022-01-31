@@ -13,6 +13,12 @@ export const Calculator = (): ReactElement => {
 
   //onclicks for numbers
   const insertNumber = (numberToInsert: NumberAsString): void => {
+    if (
+      everythingClicked[everythingClicked.length - 1] === "equal" &&
+      everythingClicked[everythingClicked.length - 2] === "number"
+    ) {
+      clearDisplay();
+    }
     let newDisplay: string = shouldClearDisplay ? numberToInsert : display + numberToInsert;
     if (newDisplay.indexOf(".") === -1 && newDisplay[0] === "0" && newDisplay.length !== 1) {
       // trim excess leading zeroes
@@ -38,6 +44,7 @@ export const Calculator = (): ReactElement => {
     setSavedNumbers([]);
     setPrevOperation([]);
     setEverythingClicked([]);
+    setShouldClearDisplay(false);
   };
 
   const insertPositiveOrNegative = (): void => {
@@ -124,6 +131,7 @@ export const Calculator = (): ReactElement => {
     } else {
       setSavedNumbers([...savedNumbers, ...prevOperation, "="]);
     }
+    setEverythingClicked([...everythingClicked, "equal"]);
   };
 
   const insertPercent = () => {
