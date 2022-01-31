@@ -4,7 +4,7 @@ import { Calculator } from "../components/Calculator";
 
 const wrapped = mount(<Calculator />);
 
-describe("Calculator equal", () => {
+describe("Calculator division", () => {
   beforeEach(() => {
     wrapped.find(".allClear").simulate("click");
   });

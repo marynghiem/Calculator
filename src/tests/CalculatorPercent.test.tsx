@@ -4,7 +4,7 @@ import { Calculator } from "../components/Calculator";
 
 const wrapped = mount(<Calculator />);
 
-describe("Calculator addition", () => {
+describe("Calculator percent", () => {
   beforeEach(() => {
     wrapped.find(".allClear").simulate("click");
   });
