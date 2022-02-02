@@ -78,7 +78,7 @@ export const Calculator = (): ReactElement => {
     if (savedNumbers.length > 2 && ["-", "+", "/", "*"].includes(operator)) {
       const newValue = computeTwoNumbers();
       setSavedNumbers([newValue, operator]);
-      setDisplay(newValue);
+      setDisplay(newValue.toString());
       // Set a flag to clear the value when the next number is input
       setShouldClearDisplay(true);
     }
@@ -86,7 +86,7 @@ export const Calculator = (): ReactElement => {
     if (savedNumbers.length > 2 && operator === "=") {
       const newValue = computeTwoNumbers();
       setSavedNumbers([newValue]);
-      setDisplay(newValue);
+      setDisplay(newValue.toString());
       setShouldClearDisplay(true);
     }
 
@@ -106,7 +106,7 @@ export const Calculator = (): ReactElement => {
   }, [savedNumbers]);
 
   // onClick for operators
-  const insertOperator = (operator) => {
+  const insertOperator = (operator): void => {
     //change operator midway
     if (everythingClicked[everythingClicked.length - 1] === "operator") {
       let savedNumbersCopy = [...savedNumbers];
@@ -125,7 +125,7 @@ export const Calculator = (): ReactElement => {
     setEverythingClicked([...everythingClicked, "operator"]);
   };
 
-  const insertEqual = () => {
+  const insertEqual = (): void => {
     if (savedNumbers.length % 2 === 0) {
       setSavedNumbers([...savedNumbers, parseFloat(display), "="]);
     } else {
@@ -134,7 +134,7 @@ export const Calculator = (): ReactElement => {
     setEverythingClicked([...everythingClicked, "equal"]);
   };
 
-  const insertPercent = () => {
+  const insertPercent = (): void => {
     if (savedNumbers.length % 2 === 0) {
       setSavedNumbers([...savedNumbers, parseFloat(display), "%"]);
     } else {
@@ -143,7 +143,7 @@ export const Calculator = (): ReactElement => {
   };
 
   // function to calculate two numbers
-  const computeTwoNumbers = () => {
+  const computeTwoNumbers = (): number => {
     if (savedNumbers[1] === "+") {
       return savedNumbers[0] + savedNumbers[2];
     } else if (savedNumbers[1] === "-") {
