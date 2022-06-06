@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import "../css/Calculator.css";
+import Draggable, { DraggableCore } from "react-draggable";
 
 type NumberAsString = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "0";
 
@@ -169,77 +170,79 @@ export const Calculator = (): ReactElement => {
   };
 
   return (
-    <div className="container">
-      <div className="calculations">{display}</div>
-      <div className="allClear numbersAndOperators brown" onClick={clearDisplay}>
-        <p>AC</p>
+    <Draggable>
+      <div className="container">
+        <div className="calculations">{display}</div>
+        <div className="allClear numbersAndOperators brown" onClick={clearDisplay}>
+          <p>AC</p>
+        </div>
+        <div className="positiveOrNegative numbersAndOperators brown" onClick={insertPositiveOrNegative}>
+          <p>+/-</p>
+        </div>
+        <div className="percent numbersAndOperators brown" onClick={insertPercent}>
+          <p>%</p>
+        </div>
+        <div
+          className={`division numbersAndOperators orange ${changeOperatorColor("/")}`}
+          onClick={() => insertOperator("/")}
+        >
+          <p>&#247;</p>
+        </div>
+        <div className="seven numbersAndOperators" onClick={() => insertNumber("7")}>
+          <p>7</p>
+        </div>
+        <div className="eight numbersAndOperators" onClick={() => insertNumber("8")}>
+          <p>8</p>
+        </div>
+        <div className="nine numbersAndOperators" onClick={() => insertNumber("9")}>
+          <p>9</p>
+        </div>
+        <div
+          className={`multiply numbersAndOperators orange ${changeOperatorColor("*")}`}
+          onClick={() => insertOperator("*")}
+        >
+          <p>&#215;</p>
+        </div>
+        <div className="four numbersAndOperators" onClick={() => insertNumber("4")}>
+          <p>4</p>
+        </div>
+        <div className="five numbersAndOperators" onClick={() => insertNumber("5")}>
+          <p>5</p>
+        </div>
+        <div className="six numbersAndOperators" onClick={() => insertNumber("6")}>
+          <p>6</p>
+        </div>
+        <div
+          className={`minus numbersAndOperators orange ${changeOperatorColor("-")}`}
+          onClick={() => insertOperator("-")}
+        >
+          <p>-</p>
+        </div>
+        <div className="one numbersAndOperators" onClick={() => insertNumber("1")}>
+          <p>1</p>
+        </div>
+        <div className="two numbersAndOperators" onClick={() => insertNumber("2")}>
+          <p>2</p>
+        </div>
+        <div className="three numbersAndOperators" onClick={() => insertNumber("3")}>
+          <p>3</p>
+        </div>
+        <div
+          className={`plus numbersAndOperators orange ${changeOperatorColor("+")}`}
+          onClick={() => insertOperator("+")}
+        >
+          <p>+</p>
+        </div>
+        <div className="zero numbersAndOperators" onClick={() => insertNumber("0")}>
+          <p>0</p>
+        </div>
+        <div className="decimal numbersAndOperators" onClick={insertDecimal}>
+          <p>.</p>
+        </div>
+        <div className="equal numbersAndOperators orange" onClick={insertEqual}>
+          <p>=</p>
+        </div>
       </div>
-      <div className="positiveOrNegative numbersAndOperators brown" onClick={insertPositiveOrNegative}>
-        <p>+/-</p>
-      </div>
-      <div className="percent numbersAndOperators brown" onClick={insertPercent}>
-        <p>%</p>
-      </div>
-      <div
-        className={`division numbersAndOperators orange ${changeOperatorColor("/")}`}
-        onClick={() => insertOperator("/")}
-      >
-        <p>&#247;</p>
-      </div>
-      <div className="seven numbersAndOperators" onClick={() => insertNumber("7")}>
-        <p>7</p>
-      </div>
-      <div className="eight numbersAndOperators" onClick={() => insertNumber("8")}>
-        <p>8</p>
-      </div>
-      <div className="nine numbersAndOperators" onClick={() => insertNumber("9")}>
-        <p>9</p>
-      </div>
-      <div
-        className={`multiply numbersAndOperators orange ${changeOperatorColor("*")}`}
-        onClick={() => insertOperator("*")}
-      >
-        <p>&#215;</p>
-      </div>
-      <div className="four numbersAndOperators" onClick={() => insertNumber("4")}>
-        <p>4</p>
-      </div>
-      <div className="five numbersAndOperators" onClick={() => insertNumber("5")}>
-        <p>5</p>
-      </div>
-      <div className="six numbersAndOperators" onClick={() => insertNumber("6")}>
-        <p>6</p>
-      </div>
-      <div
-        className={`minus numbersAndOperators orange ${changeOperatorColor("-")}`}
-        onClick={() => insertOperator("-")}
-      >
-        <p>-</p>
-      </div>
-      <div className="one numbersAndOperators" onClick={() => insertNumber("1")}>
-        <p>1</p>
-      </div>
-      <div className="two numbersAndOperators" onClick={() => insertNumber("2")}>
-        <p>2</p>
-      </div>
-      <div className="three numbersAndOperators" onClick={() => insertNumber("3")}>
-        <p>3</p>
-      </div>
-      <div
-        className={`plus numbersAndOperators orange ${changeOperatorColor("+")}`}
-        onClick={() => insertOperator("+")}
-      >
-        <p>+</p>
-      </div>
-      <div className="zero numbersAndOperators" onClick={() => insertNumber("0")}>
-        <p>0</p>
-      </div>
-      <div className="decimal numbersAndOperators" onClick={insertDecimal}>
-        <p>.</p>
-      </div>
-      <div className="equal numbersAndOperators orange" onClick={insertEqual}>
-        <p>=</p>
-      </div>
-    </div>
+    </Draggable>
   );
 };
